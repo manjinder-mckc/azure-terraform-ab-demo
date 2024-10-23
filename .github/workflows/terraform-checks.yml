@@ -15,11 +15,6 @@ jobs:
     defaults:
       run:
         working-directory: ./abinbev_app
-    env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      ARM_USE_OIDC: true
 
     steps:
     - name: Checkout
@@ -29,7 +24,7 @@ jobs:
       uses: hashicorp/setup-terraform@v3
 
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend=false
 
     - name: Terraform Validate
       run: terraform validate
